@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1><%= @location.name %> </h1>
+  <h4>Daily Irrigation Report Dated -<%= @date.strftime('%d/%m/%Y') %> </h4>
+</div>
+<table class="table table-condensed table-striped table-bordered table-responsive">
+  <thead>
+    <tr>
+      <th>Details Of Set</th>
+      <th>Section No</th>
+      <th>Running Hour</th>
+      <th>Area Covered</th>
+      <th>Today Irrigation Cost</th>
+      <th>Rainfall Inches</th>
+      <th>Remarks If Any</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sets.each do |set| %>
+      <% set.dlyirrigations.where(date: @date.to_date).each do |report| %>
+        <tr>
+          <td><%= set.setname %></td>
+          <td><%= report.section.name %></td>
+          <td><%= report.runhr %></td>
+          <td><%= report.arearun %></td>
+          <td><%= report.irricost %></td>
+          <td><%= report.rainfall %></td>
+          <td><%= report.remarks %></td>
+        </tr>
+      <% end %>  
+    <% end %>
+  </tbody>
+</table>

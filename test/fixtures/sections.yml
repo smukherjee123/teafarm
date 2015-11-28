@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  area: 1.5
+  div: MyString
+  location_id: 
+
+two:
+  name: MyString
+  area: 1.5
+  div: MyString
+  location_id: 

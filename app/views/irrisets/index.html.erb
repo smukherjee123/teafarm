@@ -1,0 +1,43 @@
+<%- model_class = Irriset -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-condensed table-striped table-bordered table-responsive">
+  <thead>
+    <tr>
+      <th>Name Of Set</th>
+      <th>Motor Specification</th>
+      <th>Motor HP</th>
+      <th>Gallon Per Minute</th>
+      <th>Fuel Mode</th>
+      <th>Unit / Hour</th>
+      <th>Location</th>
+     </tr>
+  </thead>
+  <tbody>
+    <% @irrisets.each do |irriset| %>
+      <tr>
+        <td><%= irriset.setname %></td>
+        <td><%= irriset.motordet %></td>
+        <td><%= irriset.motorhp %></td>
+        <td><%= irriset.gpm %></td>
+        <td><%= irriset.fuel %></td>
+        <td><%= irriset.fuelperhr %></td>
+        <td><%= irriset.location.name %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_irriset_path(irriset), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      irriset_path(irriset),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_irriset_path,
+            :class => 'btn btn-primary' %>

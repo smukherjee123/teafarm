@@ -1,0 +1,39 @@
+<%- model_class = Section -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-condensed table-striped table-bordered table-responsive">
+  <thead>
+    <tr>
+      <th>Section Name</th>
+      <th>Area In Hect.</th>
+      <th>Div. Under</th>
+      <th>Location</th>
+
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sections.each do |section| %>
+      <tr>
+        <td><%= section.name %></td>
+        <td><%= section.area %></td>
+        <td><%= section.div %></td>
+        <td><%= section.location.name%></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_section_path(section), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      section_path(section),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_section_path,
+            :class => 'btn btn-primary' %>

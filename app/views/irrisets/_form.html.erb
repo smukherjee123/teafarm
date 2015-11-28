@@ -1,0 +1,79 @@
+<%= form_for @irriset do |f| %>
+
+    <% if @irriset.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@irriset.errors.count, "error") %> prohibited this irriset from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @irriset.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="control-group col-sm-3">
+      <%= f.label "Set Name",:class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :setname,required: true,  :class => 'form-control' %>
+      </div>
+      <%= error_span(@irriset[:setname]) %>
+    </div>
+    <div class="control-group col-sm-3">
+      <%= f.label "Motor Specification", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :motordet,required: true,  :class => 'form-control' %>
+      </div>
+      <%= error_span(@irriset[:motordet]) %>
+    </div>
+    <div class="control-group col-sm-3">
+      <%= f.label "Motor Capasity In HP", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :motorhp, required: true, :class => 'form-control' %>
+      </div>
+      <%= error_span(@irriset[:motorhp]) %>
+    </div>
+  </div>
+</div>
+<div class="row">  
+  <div class="col-sm-12">
+    <div class="control-group col-sm-3">
+      <%= f.label "Gallon Per Minute", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :gpm, required: true, :class => 'form-control' %>
+      </div>
+      <%= error_span(@irriset[:gpm]) %>
+    </div>
+    <div class="control-group col-sm-3">
+      <%= f.label "Fuel Source", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :fuel, ["Electric","HSD"],{include_blank: false},{required: true,:class => 'form-control'} %>
+      </div>
+      <%= error_span(@irriset[:fuel]) %>
+    </div>
+    <div class="control-group col-sm-3">
+      <%= f.label "Fuel Per Hr", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :fuelperhr, required: true, :class => 'form-control' %>
+      </div>
+      <%= error_span(@irriset[:fuelperhr]) %>
+    </div>
+    <div class="control-group col-sm-3">
+      <%= f.label "Location", :class => 'control-label' %>
+      <%= f.select :location_id, Location.all.map{|l| [l.name,l.id]},{include_blank: false},{required: true,:class => 'form-control'} %>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-12">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            irrisets_path, :class => 'btn btn-default' %>
+  </div>
+</div>
+<% end %>

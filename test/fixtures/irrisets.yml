@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  setname: MyString
+  motordet: MyString
+  motorhp: 1
+  gpm: 1
+  fuel: MyString
+  fuelperhr: 1.5
+  location_id: 
+
+two:
+  setname: MyString
+  motordet: MyString
+  motorhp: 1
+  gpm: 1
+  fuel: MyString
+  fuelperhr: 1.5
+  location_id: 

@@ -1,0 +1,13 @@
+<% if @sets and @date %>
+<% if @dlyirrigations.count > 0 %>
+	<%= render "report_file" %>
+<% else %>
+<h1 class="text-danger">Data Not found</h1>
+<% end %>	
+<% else %>
+    <%= form_for report_dlyirrigations_path,:method=>'GET',:html=>{:class=>'navbar-form navbar-left'} do %>
+        <%= select_tag :location_id, options_for_select(Location.all.map{|l| [l.name,l.id]}),{:class => 'form-control'} %>
+      <%= text_field_tag :date, params[:date],'data-behaviour' => 'datepicker',class: "form-control ",required: true,:style=>'width:140px;'%>
+       <%= submit_tag 'Search',:class=>'btn btn-primary',data: { disable_with: "Please wait..." } %>
+    <% end %>   
+<% end %>
